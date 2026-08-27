@@ -1,0 +1,10 @@
+/data/*.sqlite
+/data/*.sqlite-journal
+/data/*.lock
+/data/*.json
+/data/*.jsonl
+/data/checks/
+/data/daily/
+.DS_Store
+Thumbs.db
+
