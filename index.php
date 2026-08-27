@@ -26,9 +26,7 @@ stt_head('Statut', 'home', ['stale' => $stale ? '1' : '0']);
             <h1 class="hero-title">Statut</h1>
             <?php stt_diag_box($fleet['diag'], $fleet['fleet_bar'], $fleet['overall']); ?>
             <p class="hero-panel">
-                Ce n’est pas une vitrine. C’est le tableau de bord de <strong>tous les hôtes TTRD</strong> —
-                sous-domaines découverts, crash, erreurs HTTP, latence de liaison et flux.
-                On ne vient pas pour voir&nbsp;: on vient pour savoir ce qui tient encore.
+                Tableau de bord des hôtes suivis : crash, erreurs HTTP, latence et flux.
             </p>
             <div class="actions">
                 <a class="btn btn-primary" href="/stats">Statistiques</a>

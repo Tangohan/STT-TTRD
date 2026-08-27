@@ -81,7 +81,6 @@ function stt_topbar(string $active = 'home'): void
     <nav class="nav">
         <a class="top-link<?= $active === 'home' ? ' is-active' : '' ?>" href="/">Flotte</a>
         <a class="top-link<?= $active === 'stats' ? ' is-active' : '' ?>" href="/stats">Statistiques</a>
-        <a class="top-link<?= $active === 'admin' ? ' is-active' : '' ?>" href="/admin">Migration</a>
         <a class="top-link" href="https://ttrd.fr" target="_blank" rel="noopener">Site principal</a>
     </nav>
 </header>

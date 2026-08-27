@@ -57,11 +57,34 @@ function stt_site_url(string $host): string
     return 'https://' . $host . '/';
 }
 
+function stt_watch_map(): array
+{
+    $map = [];
+    foreach (stt_config('watch', []) as $row) {
+        if (!is_array($row)) {
+            continue;
+        }
+        $host = stt_canonical_host((string) ($row['host'] ?? ''));
+        if ($host === '') {
+            continue;
+        }
+        $map[$host] = [
+            'label' => (string) ($row['label'] ?? $host),
+            'group' => (string) ($row['group'] ?? stt_site_group($host)),
+        ];
+    }
+    return $map;
+}
+
 function stt_site_label(string $host): string
 {
-    $labels = stt_config('labels', []);
-    if (isset($labels[$host])) {
-        return $labels[$host];
+    foreach (stt_config('watch', []) as $row) {
+        if (!is_array($row)) {
+            continue;
+        }
+        if (stt_canonical_host((string) ($row['host'] ?? '')) === $host && !empty($row['label'])) {
+            return (string) $row['label'];
+        }
     }
     $short = preg_replace('/\.ttrd\.fr$/', '', $host) ?? $host;
     return $short === $host ? $host : ucfirst(str_replace('-', ' ', $short));

@@ -103,6 +103,10 @@ function stt_upsert_site(string $host, string $label, string $source, string $gr
 function stt_sites(bool $enabledOnly = true): array
 {
     $sites = stt_read_json('sites.json', []);
+    $watch = function_exists('stt_watch_map') ? stt_watch_map() : [];
+    if ($watch !== []) {
+        $sites = array_values(array_filter($sites, static fn($s) => isset($watch[(string) ($s['host'] ?? '')])));
+    }
     if ($enabledOnly) {
         $sites = array_values(array_filter($sites, static fn($s) => !empty($s['enabled'])));
     }
@@ -119,6 +123,12 @@ function stt_sites(bool $enabledOnly = true): array
 function stt_site_by_host(string $host): ?array
 {
     $host = stt_canonical_host($host);
+    if (function_exists('stt_watch_map')) {
+        $watch = stt_watch_map();
+        if ($watch !== [] && !isset($watch[$host])) {
+            return null;
+        }
+    }
     foreach (stt_read_json('sites.json', []) as $site) {
         if ($site['host'] === $host) {
             return $site;

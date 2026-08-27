@@ -9,7 +9,6 @@ RewriteRule ^ - [L]
 
 RewriteRule ^stats/?$ stats.php [L,QSA]
 RewriteRule ^site/(.+)/?$ site.php?host=$1 [L,QSA]
-RewriteRule ^admin/?$ admin.php [L,QSA]
 RewriteRule ^api(/.*)?$ api.php [L,QSA]
 RewriteRule ^cron/?$ cron.php [L,QSA]
 RewriteRule ^$ index.php [L]

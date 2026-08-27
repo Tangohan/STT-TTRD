@@ -20,11 +20,6 @@ if (preg_match('#^/site/([^/]+)/?$#', $uri, $m)) {
     return true;
 }
 
-if (preg_match('#^/admin/?$#', $uri)) {
-    require __DIR__ . '/admin.php';
-    return true;
-}
-
 if (preg_match('#^/api(/.*)?$#', $uri)) {
     require __DIR__ . '/api.php';
     return true;
